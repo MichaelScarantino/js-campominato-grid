@@ -70,12 +70,12 @@ main{
     align-content: flex-start;
 }
 .single-cell{
-    
     border: 1px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 20px;
+    cursor: pointer;
 }
 /* cell dimension classes */
 .cell-easy{
@@ -90,7 +90,10 @@ main{
     width: calc(100% / 7);
     height: calc(100% / 7);
 }
-
+/* active */
+.active{
+    background-color: cornflowerblue;
+}
 /* FOOTER */
 footer{
     width: 100%;

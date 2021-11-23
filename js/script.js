@@ -29,6 +29,8 @@ function playGame() {
         for(let i = 0; i < numbersOfCellsAdds.length; i++) {
             const thisNumber = numbersOfCellsAdds[i];
             const newGeneratedCells = generateCellsItem(thisNumber, numbersOfCells);
+            // al click aggiungo la classe active con la funzione
+            newGeneratedCells.addEventListener('click', cellsClick);
             // aggiungo l'elemento alla griglia
             mainGrid.appendChild(newGeneratedCells);
             
@@ -50,6 +52,8 @@ function playGame() {
         for(let i = 0; i < numbersOfCellsAdds.length; i++) {
             const thisNumber = numbersOfCellsAdds[i];
             const newGeneratedCells = generateCellsItem(thisNumber, numbersOfCells);
+            // al click aggiungo la classe active con la funzione
+            newGeneratedCells.addEventListener('click', cellsClick);
             // aggiungo l'elemento alla griglia
             mainGrid.appendChild(newGeneratedCells);
         }
@@ -67,6 +71,8 @@ function playGame() {
         for(let i = 0; i < numbersOfCellsAdds.length; i++) {
             const thisNumber = numbersOfCellsAdds[i];
             const newGeneratedCells = generateCellsItem(thisNumber, numbersOfCells);
+            // al click aggiungo la classe active con la funzione
+            newGeneratedCells.addEventListener('click', cellsClick);
             // aggiungo l'elemento alla griglia
             mainGrid.appendChild(newGeneratedCells);
         }
@@ -110,5 +116,10 @@ function playGame() {
             
         }
         return newCells;
+        
+    }
+
+    function cellsClick() {
+        this.classList.add('active');
         
     }
