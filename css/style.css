@@ -20,11 +20,12 @@
     width: 80px;
     border-radius: 3px;
     border: 1px solid gray;
+    cursor: pointer;
 }
 /* HEADER */
 header{
     width: 100%;
-    height: 100px;
+    height: 80px;
     display: flex;
     align-items: center;
 }
@@ -54,8 +55,40 @@ header{
 /* MAIN */
 main{
     width: 100%;
-    height: calc(100% - 150px);
+    height: calc(100% - 130px);
     background-color: #7fffd4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* Games grid */
+.games-grid{
+    width: 500px;
+    height: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+.single-cell{
+    
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+/* cell dimension classes */
+.cell-easy{
+    width: calc(100% / 10);
+    height: calc(100% / 10);
+}
+.cell-hard{
+    width: calc(100% / 9);
+    height: calc(100% / 9);
+}
+.cell-crazy{
+    width: calc(100% / 7);
+    height: calc(100% / 7);
 }
 
 /* FOOTER */
