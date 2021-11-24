@@ -69,10 +69,7 @@ main{
     flex-wrap: wrap;
     align-content: flex-start;
 }
-.games-grid h2{
-    text-align: center;
-    line-height: 500px;
-}
+
 .single-cell{
     border: 1px solid black;
     display: flex;
@@ -98,6 +95,10 @@ main{
 .active{
     background-color: cornflowerblue;
     color: white;
+}
+
+.hidden{
+    display: none;
 }
 /* FOOTER */
 footer{

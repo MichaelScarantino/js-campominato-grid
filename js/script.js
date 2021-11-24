@@ -13,113 +13,61 @@ const userPlay = document.getElementById('play');
 userPlay.addEventListener('click', playGame);
 
 function playGame() {
+    // aggiungo la classe hidden all' h2 e la tolgo alla griglia
+    const introText = document.getElementById('intro-text');
+    introText.classList.add('hidden');
+
+    const mainGrid = document.getElementById('grid');
+    mainGrid.classList.remove('hidden');
+    mainGrid.innerHTML = '';
+
     // leggere la difficoltà impostata dall'utente
     const userDifficulty = document.getElementById('difficulty-type').value;
-    // comparo la difficoltà scelta dall'utente con la value
+    let numbersOfCells;
+    let gridDimension;
+    // comparo la difficoltà scelta dall'utente con la value 
     if(userDifficulty === 'easy') {
-        // creo un array di numeri da 1 a 100
-        const numbersOfCells = 100;
-        let numbersOfCellsAdds = generateCellsNumbers(numbersOfCells);
-        
-
-        // creo la cella per ogni numero dell'array
-        const mainGrid = document.getElementById('grid');
-        mainGrid.innerHTML = '';
-
-        for(let i = 0; i < numbersOfCellsAdds.length; i++) {
-            const thisNumber = numbersOfCellsAdds[i];
-            const newGeneratedCells = generateCellsItem(thisNumber, numbersOfCells);
-            // al click aggiungo la classe active con la funzione
-            newGeneratedCells.addEventListener('click', cellsClick);
-            // aggiungo l'elemento alla griglia
-            mainGrid.appendChild(newGeneratedCells);
-            
-        }
-
-        
-        
-
+        numbersOfCells = 100;
+        gridDimension = 10;
     } else if(userDifficulty === 'hard') {
-        // creo un array di numeri da 1 a 81
-        const numbersOfCells = 81;
-        let numbersOfCellsAdds = generateCellsNumbers(numbersOfCells);
-        console.log(numbersOfCellsAdds.length);
-
-        // creo la cella per ogni numero dell'array
-        const mainGrid = document.getElementById('grid');
-        mainGrid.innerHTML = '';
-
-        for(let i = 0; i < numbersOfCellsAdds.length; i++) {
-            const thisNumber = numbersOfCellsAdds[i];
-            const newGeneratedCells = generateCellsItem(thisNumber, numbersOfCells);
-            // al click aggiungo la classe active con la funzione
-            newGeneratedCells.addEventListener('click', cellsClick);
-            // aggiungo l'elemento alla griglia
-            mainGrid.appendChild(newGeneratedCells);
-        }
-
+        numbersOfCells = 81;
+        gridDimension = 9;
     } else if(userDifficulty === 'crazy') {
-        // creo un array di numeri da 1 a 49
-        const numbersOfCells = 49;
-        let numbersOfCellsAdds = generateCellsNumbers(numbersOfCells);
-        
-
-        // creo la cella per ogni numero dell'array
-        const mainGrid = document.getElementById('grid');
-        mainGrid.innerHTML = '';
-
-        for(let i = 0; i < numbersOfCellsAdds.length; i++) {
-            const thisNumber = numbersOfCellsAdds[i];
-            const newGeneratedCells = generateCellsItem(thisNumber, numbersOfCells);
-            // al click aggiungo la classe active con la funzione
-            newGeneratedCells.addEventListener('click', cellsClick);             
-            // aggiungo l'elemento alla griglia
-            mainGrid.appendChild(newGeneratedCells);
-        }
+        numbersOfCells = 49;
+        gridDimension = 7;
     }
-
-
+    // creo le celle in base al livello
+    for( let i = 1; i <= numbersOfCells; i++ ) {
+        const newGeneratedCell = generateCellsItem(i, gridDimension);
+        
+        newGeneratedCell.addEventListener('click', cellsClick);
+        mainGrid.appendChild(newGeneratedCell);
+    }
     
+    
+  
 }
 
 // ---------
     // FUNCTIONS
     // ---------
-
-    // funzione che da un array vuoto 
-    // quantityNumbers = numeri in base alla difficoltà
-    // return = array di numeri da 1 a quantitynumbers
-    function generateCellsNumbers(quantityNumbers) {
-        let numbersArray = [];
-        for(let i = 1; i <= quantityNumbers; i++){
-            numbersArray.push(i);
-        }
-        return numbersArray;
+    function cellsClick() {
+        // al click aggiungo la classe active
+        this.classList.add('active');
+        
     }
+    
 
     // funzione che mi crea l'elemento della griglia
     // number = numero da inserire nella cella
     // return = l'elemento creato (<div class ="single-cell"><span>${number}</span></div>)
-    function generateCellsItem(number, counterNumber) {
-        const newCells = document.createElement('div');
-        newCells.classList.add('single-cell');
-        newCells.innerHTML = `<span>${number}</span>`; 
-        // se counter corrisponde al numero di celle del livello di difficoltà selezionato si attiva una determinata classe
-        if(counterNumber === 100) {
-            newCells.classList.add('cell-easy');
-            
-        } else if (counterNumber === 81) {
-            newCells.classList.add('cell-hard');
-            
-        } else if (counterNumber === 49) {
-            newCells.classList.add('cell-crazy');
-            
-        }
-        return newCells;
-        
-    }
-
-    function cellsClick() {
-        this.classList.add('active');
+    function generateCellsItem(number, cellDimention) {
+        const newCell = document.createElement('div');
+        newCell.classList.add('single-cell');
+        newCell.innerHTML = `<span>${number}</span>`; 
+        // imposto la width e la height in base al livello scelto
+        newCell.style.width = `calc(100% / ${cellDimention})`;
+        newCell.style.height = `calc(100% / ${cellDimention})`;
+        return newCell;
         
     }
