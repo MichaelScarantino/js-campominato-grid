@@ -72,7 +72,7 @@ function playGame() {
             const thisNumber = numbersOfCellsAdds[i];
             const newGeneratedCells = generateCellsItem(thisNumber, numbersOfCells);
             // al click aggiungo la classe active con la funzione
-            newGeneratedCells.addEventListener('click', cellsClick);
+            newGeneratedCells.addEventListener('click', cellsClick);             
             // aggiungo l'elemento alla griglia
             mainGrid.appendChild(newGeneratedCells);
         }

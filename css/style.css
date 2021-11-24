@@ -97,6 +97,7 @@ main{
 /* active */
 .active{
     background-color: cornflowerblue;
+    color: white;
 }
 /* FOOTER */
 footer{
